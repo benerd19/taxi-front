@@ -1,7 +1,9 @@
 <template>
-    <h1>Taxi</h1>
+    <MainPage />
 </template>
 
-<script setup></script>
+<script setup>
+import MainPage from './pages/MainPage.vue'
+</script>
 
 <style lang="less" scoped></style>
