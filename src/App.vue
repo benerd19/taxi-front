@@ -1,9 +1,7 @@
 <template>
-    <MainPage />
+    <router-view />
 </template>
 
-<script setup>
-import MainPage from './pages/MainPage.vue'
-</script>
+<script setup></script>
 
 <style lang="less" scoped></style>
