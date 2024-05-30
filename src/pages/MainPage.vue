@@ -1,9 +1,14 @@
 <template>
     <!-- <TaxiButton>Заказать</TaxiButton> -->
     <!-- <Sidebar /> -->
-    <Header :isAuth="isAuth" />
+    <Header :isAuth="isAuth" v-model="isSidebarActive" />
+    <Transition>
+        <sidebar v-if="isSidebarActive" />
+    </Transition>
     <div class="main">
-        <h2 class="main__title">Добро пожаловать в PriceYourRide</h2>
+        <h2 class="main__title">
+            Добро пожаловать в <span class="main__title-company">Price<span class="main__title-your">Your</span>Ride</span>
+        </h2>
         <div class="main__content">
             <div class="main__text">
                 <h3>Мы предлагаем уникальный способ поездок</h3>
@@ -36,11 +41,23 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-const isAuth = ref(true)
+import { ref, watch } from 'vue'
+const isAuth = ref(false)
+const isSidebarActive = ref(false)
 </script>
 
 <style lang="less" scoped>
+.v-enter-active,
+.v-leave-active {
+    transition: 0.25s ease;
+    left: 0px;
+}
+
+.v-enter-from,
+.v-leave-to {
+    left: -300px;
+}
+
 .main {
     font-family: @Rbt;
 
@@ -48,6 +65,14 @@ const isAuth = ref(true)
         line-height: 1.5;
     }
 
+    &__title-company {
+        font-family: @Throne;
+    }
+
+    &__title-your {
+        font-family: @Throne;
+        color: @yellow;
+    }
     &__list-element {
         margin-bottom: 10px;
     }

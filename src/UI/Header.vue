@@ -1,7 +1,10 @@
 <template>
+    <Burger v-model="isActive" />
     <header class="header">
-        <Burger />
-        <h1>PriceYourRide</h1>
+        <div class="header__white-space"></div>
+        <!-- <Burger v-model="isActive" /> -->
+        <!-- <h1>PriceYourRide</h1> -->
+        <TaxiSvg class="header__svg-taxi" />
         <div class="header__svg-wrapper" v-if="props.isAuth">
             <UserSvg class="header__svg" />
         </div>
@@ -11,19 +14,21 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, defineModel } from 'vue'
+import TaxiSvg from '@/assets/svg/TaxiSvg.vue'
 import UserSvg from '@/assets/svg/UserSvg.vue'
 import Burger from '@/components/Burger.vue'
 defineOptions({
     name: 'Header',
 })
+
+const isActive = defineModel()
 const props = defineProps(['isAuth'])
-//const isAuth = ref(true)
 </script>
 
 <style scoped lang="less">
 .header {
-    z-index: 1;
+    z-index: 10;
     position: fixed;
     top: 0;
     display: flex;
@@ -36,6 +41,14 @@ const props = defineProps(['isAuth'])
         height: 50px;
         width: 50px;
         cursor: pointer;
+    }
+
+    &__svg-taxi {
+        height: 100px;
+        width: 100px;
+    }
+    &__white-space {
+        width: 110px;
     }
     &__svg-wrapper {
         width: 110px;

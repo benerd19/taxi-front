@@ -1,23 +1,24 @@
 <template>
     <div class="burger__wrapper">
-        <div class="burger" @click="isActive = !isActive">
-            <span :class="['burger__item', { 'burger__item--active': isActive }]"></span>
+        <div class="burger" @click="isSidebar = !isSidebar">
+            <span :class="['burger__item', { 'burger__item--active': isSidebar }]"></span>
         </div>
     </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, defineModel } from 'vue'
 defineOptions({
     name: 'Sidebar',
 })
-
-const isActive = ref(false)
+const isSidebar = defineModel()
 </script>
 
 <style lang="less" scoped>
 .burger {
-    position: relative;
+    position: fixed;
+    z-index: 20;
+    top: 50px;
     left: 20px;
     width: 25px;
     height: 20px;

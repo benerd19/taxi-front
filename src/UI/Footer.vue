@@ -12,7 +12,7 @@ defineOptions({
 footer {
     height: 150px;
     width: 100%;
-    background-color: @yellow;
+    background-color: @black;
     margin-top: 100px;
 }
 </style>
