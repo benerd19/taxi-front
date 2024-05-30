@@ -14,7 +14,7 @@ button {
     font-family: @Rbt;
     font-weight: 400;
     font-size: 16px;
-    width: 110px;
+    min-width: 110px;
     height: 50px;
     background-color: @yellow;
     border: 1px solid @black;
@@ -24,6 +24,7 @@ button {
     &:hover {
         background-color: @black;
         color: @white;
+        box-shadow: 0px 0px 15px @black;
     }
 }
 </style>
