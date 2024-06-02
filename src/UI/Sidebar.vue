@@ -1,11 +1,12 @@
 <template>
     <div class="sidebar">
         <LogoSvg class="sidebar__logo" />
-        <p class="sidebar__text">Главная</p>
-        <p class="sidebar__text">Сделать заказ</p>
-        <p class="sidebar__text">Посмотреть заказы</p>
-        <p class="sidebar__text">Об аккаунте</p>
-        <p class="sidebar__text">Выйти из аккаунта</p>
+        <router-link class="sidebar__text">Главная</router-link>
+        <router-link :to="'/order'" class="sidebar__text">Сделать заказ</router-link>
+        <router-link class="sidebar__text">Текущий заказ</router-link>
+        <router-link class="sidebar__text">Посмотреть заказы</router-link>
+        <router-link class="sidebar__text">Об аккаунте</router-link>
+        <router-link class="sidebar__text">Выйти из аккаунта</router-link>
     </div>
 </template>
 
@@ -35,6 +36,8 @@ defineOptions({
     &__text {
         cursor: pointer;
         margin: 0;
+        color: @black;
+        text-decoration: none;
         font-size: 20px;
         font-family: @Rbt;
         &:hover {

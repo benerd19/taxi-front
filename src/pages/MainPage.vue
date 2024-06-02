@@ -42,7 +42,7 @@
 
 <script setup>
 import { ref, watch } from 'vue'
-const isAuth = ref(false)
+const isAuth = ref(true)
 const isSidebarActive = ref(false)
 </script>
 
@@ -67,11 +67,13 @@ const isSidebarActive = ref(false)
 
     &__title-company {
         font-family: @Throne;
+        user-select: none;
     }
 
     &__title-your {
         font-family: @Throne;
         color: @yellow;
+        user-select: none;
     }
     &__list-element {
         margin-bottom: 10px;

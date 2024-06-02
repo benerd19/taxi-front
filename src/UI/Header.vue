@@ -1,16 +1,18 @@
 <template>
-    <Burger v-model="isActive" />
+    <Burger v-model="isActive" v-if="isAuth" />
     <header class="header">
         <div class="header__white-space"></div>
         <!-- <Burger v-model="isActive" /> -->
         <!-- <h1>PriceYourRide</h1> -->
         <TaxiSvg class="header__svg-taxi" />
         <div class="header__svg-wrapper" v-if="props.isAuth">
+            <!-- <div class="header__svg-round"> -->
             <UserSvg class="header__svg" />
+            <!-- </div> -->
         </div>
         <black-button class="header__btn" @click="$router.push('/auth')" v-else>Войти</black-button>
     </header>
-    <UserSvg class="header__svg" />
+    <!-- <UserSvg class="header__svg" /> -->
 </template>
 
 <script setup>
@@ -37,9 +39,20 @@ const props = defineProps(['isAuth'])
     height: 120px;
     width: 100%;
     background-color: @yellow;
+    // &__svg-round {
+    //     background-color: @white;
+    //     width: 55px;
+    //     height: 55px;
+    //     display: flex;
+    //     justify-content: center;
+    //     align-items: center;
+    //     border: 1px solid @black;
+    //     border-radius: 50px;
+    // }
+
     &__svg {
-        height: 50px;
-        width: 50px;
+        height: 40px;
+        width: 40px;
         cursor: pointer;
     }
 
