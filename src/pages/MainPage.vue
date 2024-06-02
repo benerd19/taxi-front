@@ -41,9 +41,12 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
+import { ref, watch, onMounted } from 'vue'
 const isAuth = ref(true)
 const isSidebarActive = ref(false)
+onMounted(() => {
+    if (!localStorage.getItem('userId')) isAuth.value = false
+})
 </script>
 
 <style lang="less" scoped>

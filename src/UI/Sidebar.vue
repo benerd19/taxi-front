@@ -1,9 +1,9 @@
 <template>
     <div class="sidebar">
         <LogoSvg class="sidebar__logo" />
-        <router-link class="sidebar__text">Главная</router-link>
+        <router-link :to="'/'" class="sidebar__text">Главная</router-link>
         <router-link :to="'/order'" class="sidebar__text">Сделать заказ</router-link>
-        <router-link class="sidebar__text">Текущий заказ</router-link>
+        <router-link :to="'/current'" class="sidebar__text">Текущий заказ</router-link>
         <router-link class="sidebar__text">Посмотреть заказы</router-link>
         <router-link class="sidebar__text">Об аккаунте</router-link>
         <router-link class="sidebar__text">Выйти из аккаунта</router-link>
