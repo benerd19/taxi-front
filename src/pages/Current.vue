@@ -10,22 +10,21 @@
             <div class="current__text-section">
                 <p>Откуда</p>
                 <input type="text" v-if="isEditing" v-model="fromWhereInput" />
-                <p class="current__text-info" v-else>{{ fromWhere }}</p>
+                <p class="current__text-info" v-else>{{ task.start_point }}</p>
             </div>
             <div class="current__text-section">
                 <p>Куда</p>
                 <input type="text" v-if="isEditing" v-model="toWhereInput" />
-                <p class="current__text-info" v-else>{{ toWhere }}</p>
+                <p class="current__text-info" v-else>{{ task.end_point }}</p>
             </div>
             <div class="current__text-section">
                 <p>Стоимость</p>
                 <input type="text" v-if="isEditing" v-model="costInput" />
-                <p class="current__text-info" v-else>{{ cost }} ₽</p>
+                <p class="current__text-info" v-else>{{ task.cost }} ₽</p>
             </div>
             <div class="current__text-section">
                 <p>Водитель</p>
-                <input type="text" v-if="isEditing" v-model="driverInput" />
-                <p class="current__text-info" v-else>{{ driver }}</p>
+                <p class="current__text-info">{{ task.driver_surname }} {{ task.driver_firstname }}</p>
             </div>
             <div class="current__button-section" v-if="isEditing">
                 <green-button @click="onClickEvent">Подтвердить</green-button>
@@ -33,7 +32,7 @@
             </div>
             <div class="current__button-section" v-else>
                 <black-button @click="ChangeEditing">Изменить</black-button>
-                <red-button>Удалить</red-button>
+                <red-button @click="DeleteOrder">Отменить</red-button>
             </div>
         </div>
         <h2 v-else class="current__no-order">У вас нет текущих заказов</h2>
@@ -42,8 +41,9 @@
 </template>
 
 <script setup>
-import { defineModel, ref } from 'vue'
-const task = ref(false)
+import { defineModel, ref, onMounted } from 'vue'
+import { getCurrenOrder, updateCurrenOrder, deleteCurrenOrder } from '@/api/orders'
+const task = ref()
 const isSidebarActive = ref(false)
 const isEditing = ref(false)
 const fromWhere = ref('Lorem, ipsum.')
@@ -54,19 +54,42 @@ const fromWhereInput = ref('')
 const toWhereInput = ref('')
 const costInput = ref('')
 const driverInput = ref('')
+onMounted(async () => {
+    try {
+        const data = await getCurrenOrder(localStorage.getItem('userId'))
+        task.value = data.data
+        console.log(task.value)
+    } catch (e) {
+        if (e.message === 'Not Found') task.value = false
+    }
+})
+
+async function DeleteOrder() {
+    try {
+        const data = await deleteCurrenOrder(task.value.id_drive)
+        task.value = false
+    } catch (e) {
+        console.log(e)
+    }
+}
+
 function ChangeEditing() {
-    fromWhereInput.value = fromWhere.value
-    toWhereInput.value = toWhere.value
-    costInput.value = cost.value
+    fromWhereInput.value = task.value.start_point
+    toWhereInput.value = task.value.end_point
+    costInput.value = task.value.cost
     driverInput.value = driver.value
     isEditing.value = true
 }
-function onClickEvent() {
-    fromWhere.value = fromWhereInput.value
-    toWhere.value = toWhereInput.value
-    cost.value = costInput.value
-    driver.value = driverInput.value
-    isEditing.value = false
+async function onClickEvent() {
+    try {
+        const data = await updateCurrenOrder(task.value.id_drive, fromWhereInput.value, toWhereInput.value, Number(costInput.value))
+        task.value.start_point = fromWhereInput.value
+        task.value.end_point = toWhereInput.value
+        task.value.cost = costInput.value
+        isEditing.value = false
+    } catch (e) {
+        console.log(e)
+    }
 }
 </script>
 

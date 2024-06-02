@@ -1,11 +1,17 @@
 <template>
-    <input type="text" v-model="text" />
-    <p>{{ text }}</p>
+    <div class="list">
+        <OrderList />
+    </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-const text = ref('asdad')
+import OrderList from '@/components/OrdersList.vue'
 </script>
 
-<style></style>
+<style>
+.list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: repeat(auto-fill, 1fr);
+}
+</style>
