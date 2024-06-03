@@ -18,12 +18,15 @@
 import OrdersList from '@/components/OrdersList.vue'
 import { ref, onMounted } from 'vue'
 import { getAllOrders } from '@/api/orders'
+import { useRouter } from 'vue-router'
+const router = useRouter()
 const orders = ref([
     { start_point: 'Начальная точка', end_point: 'Конечная точка', cost: 'Стоимость', driver_surname: 'Водитель', status_name: 'Статус поездки' },
 ])
 const isSidebarActive = ref(false)
 onMounted(async () => {
     try {
+        if (!localStorage.getItem('userId')) router.push('/')
         const data = await getAllOrders(localStorage.getItem('userId'))
         console.log(data.data)
         data.data.forEach((el) => {

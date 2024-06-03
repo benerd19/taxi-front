@@ -21,7 +21,7 @@
 
 <script setup>
 import { createOrder } from '@/api/orders'
-import { defineModel, ref } from 'vue'
+import { defineModel, ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 
 const startInput = ref('')
@@ -32,6 +32,9 @@ const router = useRouter()
 const isSidebarActive = ref(false)
 const isError = ref(false)
 const errorValue = ref('')
+onMounted(() => {
+    if (!localStorage.getItem('userId')) router.push('/')
+})
 async function create() {
     try {
         if (startInput.value === '' || endtInput.value === '' || costInput.value === '') throw new Error('Empty inputs')

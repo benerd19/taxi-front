@@ -43,6 +43,7 @@
 <script setup>
 import { defineModel, ref, onMounted } from 'vue'
 import { getCurrenOrder, updateCurrenOrder, deleteCurrenOrder } from '@/api/orders'
+import { useRouter } from 'vue-router'
 const task = ref()
 const isSidebarActive = ref(false)
 const isEditing = ref(false)
@@ -54,8 +55,10 @@ const fromWhereInput = ref('')
 const toWhereInput = ref('')
 const costInput = ref('')
 const driverInput = ref('')
+const router = useRouter()
 onMounted(async () => {
     try {
+        if (!localStorage.getItem('userId')) router.push('/')
         const data = await getCurrenOrder(localStorage.getItem('userId'))
         task.value = data.data
         console.log(task.value)

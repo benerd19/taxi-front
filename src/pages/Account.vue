@@ -82,6 +82,7 @@ function exit() {
 
 async function deleteInfo() {
     const data = await deleteUser(localStorage.getItem('userId'))
+    localStorage.removeItem('userId')
     router.push('/')
 }
 
@@ -101,6 +102,7 @@ async function acceptChange() {
 }
 
 onMounted(async () => {
+    if (!localStorage.getItem('userId')) router.push('/')
     const data = await getUser(localStorage.getItem('userId'))
     name.value = data.data.firstname
     surname.value = data.data.surname
