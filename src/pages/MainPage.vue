@@ -31,7 +31,7 @@
                     </li>
                 </ul>
                 <p>Попробуйте наш сервис уже сегодня и оцените свободу выбора!</p>
-                <YellowButton class="main__btn" @click="$router.push('/auth')">Заказать</YellowButton>
+                <YellowButton class="main__btn" @click="checkAuth">Заказать</YellowButton>
             </div>
             <img src="../assets/main-page-pic.jpg" alt="" class="main__picture" />
         </div>
@@ -42,11 +42,17 @@
 
 <script setup>
 import { ref, watch, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 const isAuth = ref(true)
 const isSidebarActive = ref(false)
+const router = useRouter()
 onMounted(() => {
     if (!localStorage.getItem('userId')) isAuth.value = false
 })
+function checkAuth() {
+    if (localStorage.getItem('userId')) router.push('/order')
+    else router.push('/auth')
+}
 </script>
 
 <style lang="less" scoped>

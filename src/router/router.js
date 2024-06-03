@@ -11,6 +11,7 @@ const routes = [
     { path: '/rules', name: 'rules', component: () => import('@/pages/InProgress.vue') },
     { path: '/order', name: 'order', component: () => import('@/pages/Order.vue') },
     { path: '/current', name: 'current', component: () => import('@/pages/Current.vue') },
+    { path: '/allorders', name: 'allorders', component: () => import('@/pages/AllOrders.vue') },
 ]
 
 const router = createRouter({
