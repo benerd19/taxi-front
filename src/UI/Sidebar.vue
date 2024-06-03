@@ -5,7 +5,7 @@
         <router-link :to="'/order'" class="sidebar__text">Создать заказ</router-link>
         <router-link :to="'/current'" class="sidebar__text">Посмотреть текущий заказ</router-link>
         <router-link :to="'/allorders'" class="sidebar__text">Посмотреть все заказы</router-link>
-        <router-link class="sidebar__text">Об аккаунте</router-link>
+        <router-link :to="'/account'" class="sidebar__text">Об аккаунте</router-link>
     </div>
 </template>
 

@@ -12,6 +12,7 @@ const routes = [
     { path: '/order', name: 'order', component: () => import('@/pages/Order.vue') },
     { path: '/current', name: 'current', component: () => import('@/pages/Current.vue') },
     { path: '/allorders', name: 'allorders', component: () => import('@/pages/AllOrders.vue') },
+    { path: '/account', name: 'account', component: () => import('@/pages/Account.vue') },
 ]
 
 const router = createRouter({

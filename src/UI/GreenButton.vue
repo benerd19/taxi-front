@@ -15,6 +15,7 @@ button {
     font-weight: 400;
     font-size: 16px;
     color: @green;
+    padding: 15px;
     background-color: @white;
     border: 1px solid @green;
     border-radius: 12px;
