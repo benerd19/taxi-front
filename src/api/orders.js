@@ -37,3 +37,12 @@ export async function deleteCurrenOrder(id) {
         throw new Error(e.response.data)
     }
 }
+
+export async function getAllOrders(id) {
+    try {
+        const data = await axios.get(`${serverIp}/api/drive/${id}`)
+        return data
+    } catch (e) {
+        throw new Error(e.response.data)
+    }
+}
